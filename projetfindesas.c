@@ -20,7 +20,7 @@ struct reservation {
 };
 
 struct reservation reservations[100];
-int count = 10;
+int count = 0;
 
 void ajout() {
     if (count >= 100) {
@@ -38,7 +38,7 @@ void ajout() {
     printf("Veuillez entrer le statut de reservation du patient (valide, reporte, annule, traite): \n");
     scanf("%s", reservations[count].statut);
     
-    reservations[count].ref = count + 1;
+    reservations[count].ref = count;
     printf("Veuillez entrer le jour de reservation du patient : \n");
     scanf("%d", &reservations[count].date.jour);
     printf("Veuillez entrer le mois de reservation du patient : \n");
@@ -60,13 +60,14 @@ void affichtous() {
     }
 
     for (int i = 0; i < count; i++) {
-        printf(" Nom de l'etudiant: %s\n", reservations[i].nom);
-        printf(" Prenom de l'etudiant: %s\n", reservations[i].prenom);
-        printf(" Telephone de la reservation: %s\n", reservations[i].number);
-        printf(" Age : %d\n", reservations[i].age);
-        printf(" Statut de la reservation: %s\n", reservations[i].statut);
-        printf(" Reference unique: %d\n", reservations[i].ref);
-        printf(" Date de reservation: %02d/%02d/%d\n",
+        printf("\n***************************\n");
+        printf(" \nNom de l'etudiant: %s\n", reservations[i].nom);
+        printf(" \nPrenom de l'etudiant: %s\n", reservations[i].prenom);
+        printf(" \nTelephone de la reservation: %s\n", reservations[i].number);
+        printf(" \nAge : %d\n", reservations[i].age);
+        printf(" \nStatut de la reservation: %s\n", reservations[i].statut);
+        printf(" \nReference unique: %d\n", reservations[i].ref);
+        printf(" \nDate de reservation: %02d/%02d/%d\n",
                reservations[i].date.jour,
                reservations[i].date.mois,
                reservations[i].date.anne);
@@ -79,6 +80,7 @@ void affich() {
     scanf("%d", &option);
     for (int i = 0; i < count; i++) {
         if (option == reservations[i].ref) {
+            printf("\n******************\n");
             printf(" Nom de l'etudiant: %s\n", reservations[i].nom);
             printf(" Prenom de l'etudiant: %s\n", reservations[i].prenom);
             printf(" Telephone de la reservation: %s\n", reservations[i].number);
@@ -199,8 +201,6 @@ void trierparstatut() {
         }
     }
     printf("Reservations triees par statut avec succes.\n");
-    Sleep(3000);
-    system("cls");
 }
 
 int main() {
@@ -215,20 +215,122 @@ int main() {
     reservations[count].date.anne = 2024;
     reservations[count].ref = ++count;
 
+    strcpy(reservations[count].nom, "fatima");
+    strcpy(reservations[count].prenom, "zahra");
+    strcpy(reservations[count].number, "0123456780");
+    reservations[count].age = 28;
+    strcpy(reservations[count].statut, "traite");
+    reservations[count].date.jour = 5;
+    reservations[count].date.mois = 4;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "ali");
+    strcpy(reservations[count].prenom, "bensalem");
+    strcpy(reservations[count].number, "0234567891");
+    reservations[count].age = 35;
+    strcpy(reservations[count].statut, "valide");
+    reservations[count].date.jour = 10;
+    reservations[count].date.mois = 5;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "noura");
+    strcpy(reservations[count].prenom, "elmahfoud");
+    strcpy(reservations[count].number, "0345678902");
+    reservations[count].age = 22;
+    strcpy(reservations[count].statut, "reporte");
+    reservations[count].date.jour = 15;
+    reservations[count].date.mois = 6;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "hamid");
+    strcpy(reservations[count].prenom, "benmohamed");
+    strcpy(reservations[count].number, "0456789013");
+    reservations[count].age = 50;
+    strcpy(reservations[count].statut, "annule");
+    reservations[count].date.jour = 20;
+    reservations[count].date.mois = 7;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "sarah");
+    strcpy(reservations[count].prenom, "benali");
+    strcpy(reservations[count].number, "0567890124");
+    reservations[count].age = 30;
+    strcpy(reservations[count].statut, "valide");
+    reservations[count].date.jour = 25;
+    reservations[count].date.mois = 8;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "youssef");
+    strcpy(reservations[count].prenom, "benhamid");
+    strcpy(reservations[count].number, "0678901235");
+    reservations[count].age = 45;
+    strcpy(reservations[count].statut, "traite");
+    reservations[count].date.jour = 30;
+    reservations[count].date.mois = 9;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "laila");
+    strcpy(reservations[count].prenom, "benhassan");
+    strcpy(reservations[count].number, "0789012346");
+    reservations[count].age = 29;
+    strcpy(reservations[count].statut, "reporte");
+    reservations[count].date.jour = 2;
+    reservations[count].date.mois = 10;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "karim");
+    strcpy(reservations[count].prenom, "benali");
+    strcpy(reservations[count].number, "0890123457");
+    reservations[count].age = 38;
+    strcpy(reservations[count].statut, "valide");
+    reservations[count].date.jour = 12;
+    reservations[count].date.mois = 11;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "najwa");
+    strcpy(reservations[count].prenom, "elhaddad");
+    strcpy(reservations[count].number, "0901234568");
+    reservations[count].age = 32;
+    strcpy(reservations[count].statut, "annule");
+    reservations[count].date.jour = 18;
+    reservations[count].date.mois = 12;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
+    strcpy(reservations[count].nom, "dibt");
+    strcpy(reservations[count].prenom, "chakib");
+    strcpy(reservations[count].number, "00254558");
+    reservations[count].age = 32;
+    strcpy(reservations[count].statut, "annule");
+    reservations[count].date.jour = 18;
+    reservations[count].date.mois = 12;
+    reservations[count].date.anne = 2024;
+    reservations[count].ref = ++count;
+
     do {
-        printf("1. Ajouter une reservation\n");
-        printf("2. Afficher tous les reservation\n");
-        printf("3. Modifier une reservation\n");
-        printf("4. Supprimer une reservation\n");
-        printf("5. rechercher une reservation\n");
-        printf("6. Trier par statut\n");
-        printf("7. Quitter\n");
-        printf("Entrez votre choix : ");
+        printf("\n 1. Ajouter une reservation \n");
+        printf(" 2. Afficher tous les reservation\n");
+        printf(" 3. Afficher une reservation\n");
+        printf(" 4. Modifier une reservation\n");
+        printf(" 5. Supprimer une reservation\n");
+        printf(" 6. rechercher une reservation\n");
+        printf(" 7. Trier par statut\n");
+        printf(" 8. Quitter\n");
+        printf("\n Entrez votre choix : ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1:
                 ajout();
+                break;
             case 2:
                 affichtous();
                 break;
@@ -249,12 +351,12 @@ int main() {
                 break;
             case 8:
                 printf("Merci et au revoir!\n");
-                break;
+                return 0;
             default:
                 printf("Choix invalide. Veuillez reessayer.\n");
                 system("cls");
         }
-    } while (choice != 7);
+    } while (choice != 8);
 
     return 0;
 }
