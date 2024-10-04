@@ -61,13 +61,13 @@ void affichtous() {
 
     for (int i = 0; i < count; i++) {
         printf("\n***************************\n");
-        printf(" \nNom de l'etudiant: %s\n", reservations[i].nom);
-        printf(" \nPrenom de l'etudiant: %s\n", reservations[i].prenom);
-        printf(" \nTelephone de la reservation: %s\n", reservations[i].number);
-        printf(" \nAge : %d\n", reservations[i].age);
-        printf(" \nStatut de la reservation: %s\n", reservations[i].statut);
-        printf(" \nReference unique: %d\n", reservations[i].ref);
-        printf(" \nDate de reservation: %02d/%02d/%d\n",
+        printf(" \nNom du patient :          %s\n", reservations[i].nom);
+        printf(" \nPrenom du patient :       %s\n", reservations[i].prenom);
+        printf(" \nTelephone du patient :    %s\n", reservations[i].number);
+        printf(" \nAge du patient :          %d\n", reservations[i].age);
+        printf(" \nStatut de la reservation :%s\n", reservations[i].statut);
+        printf(" \nReference unique :        %d\n", reservations[i].ref);
+        printf(" \nDate de reservation :     %02d/%02d/%d\n",
                reservations[i].date.jour,
                reservations[i].date.mois,
                reservations[i].date.anne);
@@ -133,7 +133,7 @@ void modiff() {
 
 void suprr() {
     int option;
-    printf("Veuillez entrer la Reference unique: ");
+    printf("Veuillez entrer la Reference unique: \n");
     scanf("%d", &option);
     
     for (int i = 0; i < count; i++) {
@@ -155,20 +155,20 @@ void suprr() {
 
 void rech() {
     int option;
-    printf("Entrer le type de recherche : (par reference : 1 , par nom : 2)");
+    printf("Entrer le type de recherche : (par reference : 1 , par nom : 2)\n");
     scanf("%d", &option);
     if (option == 1) {
         affich();
     } else if (option == 2) {
         char nom[20];
-        printf("Veuillez entrer le nom du patient : ");
+        printf("Veuillez entrer le nom du patient : \n ");
         scanf("%s", nom);
         int found = 0;
         for (int i = 0; i < count; i++) {
             if (strcmp(reservations[i].nom, nom) == 0) {
-                printf(" Nom de l'etudiant: %s\n", reservations[i].nom);
-                printf(" Prenom de l'etudiant: %s\n", reservations[i].prenom);
-                printf(" Telephone de la reservation: %s\n", reservations[i].number);
+                printf(" Nom du patient: %s\n", reservations[i].nom);
+                printf(" Prenom du patient: %s\n", reservations[i].prenom);
+                printf(" Telephone du patient: %s\n", reservations[i].number);
                 printf(" Age : %d\n", reservations[i].age);
                 printf(" Statut de la reservation: %s\n", reservations[i].statut);
                 printf(" Reference unique: %d\n", reservations[i].ref);
@@ -183,7 +183,7 @@ void rech() {
             printf("Aucune reservation trouvee pour le nom %s!\n", nom);
         }
     } else {
-        printf("input invalide");
+        printf("input invalide\n");
     }
     return;
 }
@@ -354,7 +354,9 @@ int main() {
                 return 0;
             default:
                 printf("Choix invalide. Veuillez reessayer.\n");
+                Sleep(3000); 
                 system("cls");
+
         }
     } while (choice != 8);
 
