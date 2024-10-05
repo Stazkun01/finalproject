@@ -22,7 +22,7 @@ struct reservation {
 struct reservation reservations[100];
 int count = 0;
 
-void ajout() {
+void ajouter() {
     if (count >= 100) {
         printf("Limite de reservations atteinte!\n");
         return;
@@ -51,7 +51,7 @@ void ajout() {
     Sleep(3000);
     system("cls");
 }
-void affichtous() {
+void affichertous() {
     if (count == 0) {
         printf("Aucune reservation disponible.\n");
         Sleep(3000);
@@ -74,7 +74,7 @@ void affichtous() {
                
      }
 }
-void affich() {
+void afficher() {
     int option;
     printf("Entrer le reference du patient que vous voulez afficher : \n");
     scanf("%d", &option);
@@ -99,28 +99,28 @@ void affich() {
     system("cls");
 }
 
-void modiff() {
+void modiffier() {
     int option;
     printf("Veuillez entrer la Reference unique: ");
     scanf("%d", &option);
     
     for (int i = 0; i < count; i++) {
         if (reservations[i].ref == option) {
-            printf("Veuillez entrer le nom du patient : \n");
+            printf("Veuillez entrer le nouveau nom du patient : \n");
             scanf("%s", reservations[i].nom);
-            printf("Veuillez entrer le prenom du patient : \n");
+            printf("Veuillez entrer le nouveau prenom du patient : \n");
             scanf("%s", reservations[i].prenom);
-            printf("Veuillez entrer le numero de telephone du patient : \n");
+            printf("Veuillez entrer le nouveau numero de telephone du patient : \n");
             scanf("%s", reservations[i].number);
-            printf("Veuillez entrer l'age du patient : \n");
+            printf("Veuillez entrer le nouveau age du patient : \n");
             scanf("%d", &reservations[i].age);
-            printf("Veuillez entrer le statut de reservation du patient : \n");
+            printf("Veuillez entrer le nouveau statut de reservation du patient : \n");
             scanf("%s", reservations[i].statut);
-            printf("Veuillez entrer le jour de reservation : \n");
+            printf("Veuillez entrer le nouveau jour de reservation : \n");
             scanf("%d", &reservations[i].date.jour);
-            printf("Veuillez entrer le mois de reservation : \n");
+            printf("Veuillez entrer le nouveau mois de reservation : \n");
             scanf("%d", &reservations[i].date.mois);
-            printf("Veuillez entrer l'annee de reservation : \n");
+            printf("Veuillez entrer la nouvelle annee de reservation : \n");
             scanf("%d", &reservations[i].date.anne);
             system("cls");
             return;
@@ -131,7 +131,7 @@ void modiff() {
     system("cls");
 }
 
-void suprr() {
+void suprrimer() {
     int option;
     printf("Veuillez entrer la Reference unique: \n");
     scanf("%d", &option);
@@ -153,12 +153,12 @@ void suprr() {
     system("cls");
 }
 
-void rech() {
+void recherche() {
     int option;
     printf("Entrer le type de recherche : (par reference : 1 , par nom : 2)\n");
     scanf("%d", &option);
     if (option == 1) {
-        affich();
+        afficher();
     } else if (option == 2) {
         char nom[20];
         printf("Veuillez entrer le nom du patient : \n ");
@@ -187,10 +187,12 @@ void rech() {
     }
     return;
 }
-
-void trierparstatut() {
+void trier() {
     struct reservation temp;
-
+    int option;
+    printf("\nEnter le type du triage : (1- par statut . 2- par nom .\n");
+    scanf("%d", &option);
+if (option == 1) {
     for (int i = 0; i < count - 1; i++) {
         for (int j = i + 1; j < count; j++) {
             if (strcmp(reservations[i].statut, reservations[j].statut) > 0) {
@@ -201,8 +203,38 @@ void trierparstatut() {
         }
     }
     printf("Reservations triees par statut avec succes.\n");
+    }
+    else if (option == 2) {
+        for (int i = 0; i < count - 1; i++) {
+            for (int j = i + 1; j < count; j++) {
+                if (strcmp(reservations[i].nom, reservations[j].nom) > 0) {
+                    temp = reservations[j];
+                    reservations[j] = reservations[i];
+                    reservations[i] = temp;
+                }
+            }
+        }
+        printf("Reservations triees par nom avec succes.\n");
+    } 
+        else {
+        printf("Input invalide\n");
+    }
 }
+void cma() {
+    if (count == 0) {
+        printf("Aucune reservation disponible pour calculer la moyenne d'age.\n");
+        return;
+    }
 
+    int somme = 0;
+    for (int i = 0; i < count; i++) {
+        somme += reservations[i].age;
+    }
+    float moyenne = (float)somme / count;
+    printf("La moyenne d'age des patients ayant reserve est : %.2f ans\n", moyenne);
+    Sleep(5000);
+    system("cls");
+}
 int main() {
     int choice;
     strcpy(reservations[count].nom, "dahmad");
@@ -321,44 +353,46 @@ int main() {
         printf(" 3. Afficher une reservation\n");
         printf(" 4. Modifier une reservation\n");
         printf(" 5. Supprimer une reservation\n");
-        printf(" 6. rechercher une reservation\n");
-        printf(" 7. Trier par statut\n");
-        printf(" 8. Quitter\n");
+        printf(" 6. Rechercher une reservation\n");
+        printf(" 7. Trier tous les reservation\n");
+        printf(" 8. Calculer le moyen d age\n");
+        printf(" 9. Quitter\n");
         printf("\n Entrez votre choix : ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1:
-                ajout();
+                ajouter();
                 break;
             case 2:
-                affichtous();
+                affichertous();
                 break;
             case 3:
-                affich();
+                afficher();
                 break;
             case 4:
-                modiff();
+                modiffier();
                 break;
             case 5:
-                suprr();
+                suprrimer();
                 break;
             case 6:
-                rech();
+                recherche();
                 break;
             case 7:
-                trierparstatut();
+                trier();
                 break;
             case 8:
+                cma();
+                break;
+            case 9:
                 printf("Merci et au revoir!\n");
                 return 0;
             default:
                 printf("Choix invalide. Veuillez reessayer.\n");
-                Sleep(3000); 
+                Sleep(3000);
                 system("cls");
-
         }
-    } while (choice != 8);
+    } while (choice != 9);
 
-    return 0;
-}
+    return 0; }
